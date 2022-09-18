@@ -6,7 +6,7 @@
     },
     "miniprogramRoot": "miniprogram/",
     "compileType": "miniprogram",
-    "projectname": "ts-demo",
+    "projectname": "coolcar",
     "setting": {
         "useCompilerPlugins": [
             "typescript"
@@ -21,7 +21,7 @@
     "simulatorPluginLibVersion": {},
     "condition": {},
     "srcMiniprogramRoot": "miniprogram/",
-    "appid": "wx150687b209b0807d",
+    "appid": "wxc8990351684d6fd4",
     "libVersion": "2.26.0",
     "editorSetting": {
         "tabIndent": "insertSpaces",
