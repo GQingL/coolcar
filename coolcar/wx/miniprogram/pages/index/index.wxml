@@ -8,7 +8,7 @@
   enable-3D="{{is3D}}"
   markers="{{markers}}" 
 >
-  <cover-view class="icon-container">
+  <view class="icon-container">
     <cover-image class="round" 
       src="{{avatarURL?avatarURL:'/resources/account.png'}}"
       bindtap="onMyTripsTap"></cover-image>
@@ -16,5 +16,9 @@
       src="/resources/my_location.png"
       bindtap="onMyLocationTap"
     ></cover-image>
+  </view>
+  <cover-view class="btn-container bg-grey round" 
+  bindtap="onScanClicked">
+  <cover-view>扫码租车</cover-view>
   </cover-view>
 </map>

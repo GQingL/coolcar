@@ -33,5 +33,5 @@ page {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: .8;
+    opacity: 0.8;
   }

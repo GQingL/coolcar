@@ -5,5 +5,18 @@
         "urlCheck": false,
         "compileHotReLoad": true
     },
-    "projectname": "miniprogram"
+    "projectname": "miniprogram",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "",
+                    "pathName": "/pages/register/register",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
+    }
 }

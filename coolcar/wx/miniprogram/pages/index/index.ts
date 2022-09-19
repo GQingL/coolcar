@@ -2,6 +2,7 @@ import { IAppOption } from "../../appoption"
 
 Page({
   data: {
+  isPageShow: false,
   avatarURL: '',
   setting: {
     skew: 0,
@@ -24,6 +25,16 @@ Page({
     longitude: 120,
   },
   scale: 16,
+  markers: [
+      {
+          iconPath: "/resources/car.png",
+          id: 0,
+          latitude: 23.099994,
+          longitude: 113.324520,
+          width: 50,
+          height: 50
+      }
+  ]
   },
   async onLoad() {
     const userInfo = await getApp<IAppOption>().globalData.userInfo
@@ -31,33 +42,7 @@ Page({
       avatarURL: userInfo.avatarUrl,
     })
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs',
-    })
-  },
   onMyLocationTap() {
-    // wx.getSetting({
-    //   success(res){
-    //     if(res.authSetting['scope.userLocation']===false){
-    //       wx.openSetting({
-    //         success(res){
-    //         res.authSetting ={
-    //           "scope.userLocation": true
-    //         }
-    //       }
-    //       })
-    //     }else{
-    //       wx.authorize({
-    //         scope: 'scope.userLocation',
-    //         success(){
-
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
     wx.getLocation({
       type: 'gcj02',
       success: res => {
@@ -76,4 +61,36 @@ Page({
       }
     })
   },
+  onScanClicked() {
+    wx.scanCode({
+        success: console.log,
+        fail: console.error
+    })
+  },
+  moveCars(){
+     const map =  wx.createMapContext("map");
+     const dest = {
+         latitude: 23.099994,
+         longitude: 113.324520,
+     }
+     const moveCar = () =>{
+         dest.latitude += 0.1
+         dest.longitude += 0.1
+        map.translateMarker({
+            destination: {
+                latitude: dest.latitude,
+                longitude: dest.longitude,
+            },
+            markerId: 0,
+            autoRotate: false,
+            rotate: 0,
+            duration: 5000,
+            animationEnd: () => {
+                if(this.isPageShow){
+                    moveCar()
+                }
+            },
+         })
+     }
+  }
 })
