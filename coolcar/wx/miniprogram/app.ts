@@ -31,3 +31,7 @@ App<IAppOption>({
     resolveUserInfo(userInfo)
   }
 })
+
+// function App<T>(arg0: { globalData: { userInfo: Promise<unknown> }; onLaunch(): Promise<void>; resolveUserInfo(userInfo: WechatMiniprogram.UserInfo): void }) {
+//   throw new Error("Function not implemented.")
+// }
