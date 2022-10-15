@@ -36,9 +36,11 @@ Page({
       }
   ]
   },
+  // 获取用户头像
   async onLoad() {
     const userInfo = await getApp<IAppOption>().globalData.userInfo
     this.setData({
+        // 获取头像图片
       avatarURL: userInfo.avatarUrl,
     })
   },

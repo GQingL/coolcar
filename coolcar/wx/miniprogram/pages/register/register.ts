@@ -2,10 +2,11 @@ Page({
     data: {
         licNo: '',
         name: '',
-        genderIndex: 0,
+        genderIndex: 1,
         genders: ['未知', '男', '女'],
         birthDate: '1990-01-01',
-        licImgURL: undefined as string | undefined,
+        licImgURL: '',
+        state: 'UNSUBMITTED'
     },
     onGenderChange(e: any) {
         this.setData({
@@ -26,6 +27,24 @@ Page({
                 })
             }
             }
+        })
+    },
+    onSubmit(){
+        this.setData({
+            state: 'PENDING'
+        })
+    },
+    onResubmit(){
+        this.setData({
+            state: 'UNSUBMITTED'
+        })
+    },
+    onLicVerified() {
+        this.setData({
+            state: 'VERIFIED'
+        })
+        wx.redirectTo({
+            url: '/pages/lock/lock'
         })
     }
 })
