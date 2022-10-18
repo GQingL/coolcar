@@ -1,6 +1,9 @@
 import { IAppOption } from "../../appoption"
+import { routing } from "../../utils/routing"
 
 const shareLocationKey = "share_location"
+
+const tripId = 'trip456'
 
 Page({
     data:{
@@ -42,7 +45,9 @@ Page({
         })
         setTimeout(() => {
             wx.redirectTo({
-                url: '/pages/driving/driving',
+                url: routing.driving({
+                    trip_id: tripId
+                }),
                 complete: () =>{
                     wx.hideLoading
                 }

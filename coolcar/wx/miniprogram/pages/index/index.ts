@@ -1,8 +1,9 @@
 import { IAppOption } from "../../appoption"
+import { routing } from "../../utils/routing"
 
 Page({
-  data: {
   isPageShow: false,
+  data: {
   avatarURL: '',
   setting: {
     skew: 0,
@@ -63,21 +64,37 @@ Page({
       }
     })
   },
-  onScanClicked() {
+  onScanTap() {
     wx.scanCode({
-        success: console.log,
+        success: () => {
+          const carId = 'car123'
+          const redirectURL = routing.lock({
+            car_id: carId,
+          })
+          wx.navigateTo({
+            url: routing.register({
+              redirect: encodeURIComponent(redirectURL)
+            })
+          })
+        },
         fail: console.error
     })
   },
+  onShow(){
+    this.isPageShow = true
+  },
+  onHide(){
+    this.isPageShow = false
+  },
   moveCars(){
-     const map =  wx.createMapContext("map");
-     const dest = {
-         latitude: 23.099994,
-         longitude: 113.324520,
-     }
-     const moveCar = () =>{
-         dest.latitude += 0.1
-         dest.longitude += 0.1
+    const map =  wx.createMapContext("map");
+    const dest = {
+        latitude: 23.099994,
+        longitude: 113.324520,
+    }
+    const moveCar = () =>{
+        dest.latitude += 0.1
+        dest.longitude += 0.1
         map.translateMarker({
             destination: {
                 latitude: dest.latitude,
@@ -92,7 +109,12 @@ Page({
                     moveCar()
                 }
             },
-         })
-     }
+        })
+    }
+  },
+  onMyTripsTap(){
+    wx.navigateTo({
+      url: routing.notMyTrips()
+    })
   }
 })

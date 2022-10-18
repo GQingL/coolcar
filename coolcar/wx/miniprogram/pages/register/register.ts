@@ -1,4 +1,7 @@
+import { routing } from "../../utils/routing"
+
 Page({
+    redirectURL: '',
     data: {
         licNo: '',
         name: '',
@@ -7,6 +10,12 @@ Page({
         birthDate: '1990-01-01',
         licImgURL: '',
         state: 'UNSUBMITTED'
+    },
+    onLoad(opt: Record<'redirect',string>){
+        const o: routing.RegisterOpts = opt
+        if(o.redirect){
+            this.redirectURL = decodeURIComponent(o.redirect)
+        }
     },
     onGenderChange(e: any) {
         this.setData({
@@ -43,8 +52,10 @@ Page({
         this.setData({
             state: 'VERIFIED'
         })
-        wx.redirectTo({
-            url: '/pages/lock/lock'
-        })
+        if (this.redirectURL) {
+            wx.redirectTo({
+                url: '/pages/lock/lock'
+            })
+        }
     }
 })

@@ -11,7 +11,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "/pages/lock/lock",
+                    "pathName": "pages/index/index",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
